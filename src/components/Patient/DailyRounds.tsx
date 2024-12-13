@@ -1,4 +1,3 @@
-import { error } from "@pnotify/core";
 import dayjs from "dayjs";
 import { navigate } from "raviger";
 import { useCallback, useEffect, useState } from "react";
@@ -339,7 +338,9 @@ export const DailyRounds = (props: any) => {
         );
 
         if (investigationError) {
-          Notification.Error({ msg: error });
+          Notification.Error({
+            msg: investigationError.message || investigationError,
+          });
           return;
         }
       }

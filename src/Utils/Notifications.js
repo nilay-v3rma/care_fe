@@ -1,38 +1,4 @@
-import { Stack, alert, defaultModules } from "@pnotify/core";
-import * as PNotifyMobile from "@pnotify/mobile";
-
-defaultModules.set(PNotifyMobile, {});
-
-const notifyStack = new Stack({
-  dir1: "down",
-  dir2: "left",
-  firstpos1: 25,
-  firstpos2: 25,
-  modal: false,
-  maxOpen: 3,
-  maxStrategy: "close",
-  maxClosureCausesWait: false,
-  push: "top",
-});
-
-const notify = (text, type) => {
-  const notification = alert({
-    type: type,
-    text: text,
-    styling: "brighttheme",
-    mode: "light",
-    sticker: false,
-    buttons: {
-      closer: false,
-      sticker: false,
-    },
-    stack: notifyStack,
-    delay: 3000,
-  });
-  notification.refs.elem.addEventListener("click", () => {
-    notification.close();
-  });
-};
+import { toast } from "sonner";
 
 /**
  * Formats input string to a more human readable format
@@ -74,27 +40,29 @@ const notifyError = (error) => {
       errorMsg += "\n";
     }
   }
-  notify(errorMsg, "error");
+  toast.error(errorMsg, { duration: 5000 });
 };
 
-/** Close all Notifications **/
+/** Close all Notifications (Sonner doesn't need this but can be kept for custom implementations) **/
 export const closeAllNotifications = () => {
-  notifyStack.close();
+  // Sonner doesn't require a close method, but you can manage this with custom logic if needed
+  // Example: toast.dismiss() could be used to close all toasts if necessary.
+  toast.dismiss();
 };
 
 /** Success message handler */
 export const Success = ({ msg }) => {
-  notify(msg, "success");
+  toast.success(msg, { duration: 3000 });
 };
 
 /** Error message handler */
 export const Error = ({ msg }) => {
-  notify(msg, "error");
+  toast.error(msg, { duration: 5000 });
 };
 
 /** Warning message handler */
 export const Warn = ({ msg }) => {
-  notify(msg, "notice");
+  toast.info(msg, { duration: 3000 });
 };
 
 /** 400 Bad Request handler */

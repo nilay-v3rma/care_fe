@@ -113,8 +113,13 @@ Cypress.Commands.add(
   },
 );
 
+//check sonner toast notification
 Cypress.Commands.add("verifyNotification", (text) => {
-  return cy.get(".pnotify-container").should("exist").contains(text);
+  return cy
+    .get("li[data-sonner-toast] div[data-title]")
+    .should("exist")
+    .and("be.visible")
+    .contains(text);
 });
 
 Cypress.Commands.add("clearAllFilters", () => {

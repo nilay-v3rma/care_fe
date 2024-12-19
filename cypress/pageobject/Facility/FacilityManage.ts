@@ -75,10 +75,13 @@ class FacilityManage {
     text: string | RegExp,
     isRegex = false,
   ) {
+    // Selector for the Sonner toast content
+    const toastSelector = "li[data-sonner-toast] div[data-title]";
+
     if (isRegex) {
-      cy.get(".pnotify-text").should("be.visible").contains(text);
+      cy.get(toastSelector).should("be.visible").contains(text);
     } else {
-      cy.get(".pnotify-text").should("be.visible").and("contain.text", text);
+      cy.get(toastSelector).should("be.visible").and("contain.text", text);
     }
   }
 

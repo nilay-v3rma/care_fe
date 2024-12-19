@@ -220,7 +220,7 @@ Cypress.Commands.add("preventPrint", () => {
 });
 
 Cypress.Commands.add("closeNotification", () => {
-  cy.get(".pnotify")
+  cy.get("li[data-sonner-toast] div[data-title]")
     .should("exist")
     .each(($div) => {
       cy.wrap($div).click();

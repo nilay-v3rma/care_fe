@@ -15,10 +15,14 @@ const IconIndex: React.FC = () => {
     iconName.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-
-    toast.success("Icon copied to clipboard successfully");
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(t("icon.copy.success"));
+    } catch (error) {
+      toast.error(t("icon.copy.error"));
+      console.error("Failed to copy to clipboard:", error);
+    }
   };
 
   return (

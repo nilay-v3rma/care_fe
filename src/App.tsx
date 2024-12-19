@@ -42,7 +42,14 @@ const App = () => {
               <Integrations.Sentry disabled={!import.meta.env.PROD} />
               <Integrations.Plausible />
             </HistoryAPIProvider>
-            <Toaster />
+            <Toaster
+              position="top-right"
+              theme="light"
+              richColors
+              // Voluntarily passing empty object as a workaround for `richColors`
+              // to work. Refer: https://github.com/shadcn-ui/ui/issues/2234.
+              toastOptions={{}}
+            />
           </PluginEngine>
         </PubSubProvider>
       </Suspense>

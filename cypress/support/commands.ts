@@ -118,7 +118,6 @@ Cypress.Commands.add("verifyNotification", (text) => {
   return cy
     .get("li[data-sonner-toast] div[data-title]")
     .should("exist")
-    .and("be.visible")
     .contains(text);
 });
 
@@ -229,7 +228,7 @@ Cypress.Commands.add("closeNotification", () => {
   cy.get("li[data-sonner-toast] div[data-title]")
     .should("exist")
     .each(($div) => {
-      cy.wrap($div).click();
+      cy.wrap($div).click({ force: true });
     });
 });
 

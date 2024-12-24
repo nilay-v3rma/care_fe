@@ -60,7 +60,8 @@ const App = () => {
               richColors
               // Voluntarily passing empty object as a workaround for `richColors`
               // to work. Refer: https://github.com/shadcn-ui/ui/issues/2234.
-              toastOptions={{}}
+              expand={true}
+              toastOptions={{ style: { zIndex: 9999 } }}
             />
           </PluginEngine>
         </PubSubProvider>

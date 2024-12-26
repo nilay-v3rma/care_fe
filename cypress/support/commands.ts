@@ -225,11 +225,8 @@ Cypress.Commands.add("preventPrint", () => {
 });
 
 Cypress.Commands.add("closeNotification", () => {
-  cy.get("li[data-sonner-toast] div[data-title]")
-    .should("exist")
-    .each(($div) => {
-      cy.wrap($div).click({ force: true });
-    });
+  cy.wait(5000); //wait for the notification to disappear
+  cy.get("li[data-sonner-toast]").should("not.exist"); // Ensure the toast is removed from the DOM
 });
 
 Cypress.Commands.add("verifyContentPresence", (selector, texts) => {

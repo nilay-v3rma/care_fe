@@ -43,10 +43,7 @@ const notifyError = (error) => {
   toast.error(errorMsg, { duration: 5000 });
 };
 
-/** Close all Notifications (Sonner doesn't need this but can be kept for custom implementations) **/
 export const closeAllNotifications = () => {
-  // Sonner doesn't require a close method, but you can manage this with custom logic if needed
-  // Example: toast.dismiss() could be used to close all toasts if necessary.
   toast.dismiss();
 };
 
